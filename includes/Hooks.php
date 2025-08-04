@@ -8,7 +8,7 @@ namespace MediaWiki\Extension\UnlinkedWikibase;
 
 use MediaWiki\Config\Config;
 use MediaWiki\Hook\InfoActionHook;
-use MediaWiki\Hook\OutputPageParserOutputHook;
+use MediaWiki\Output\Hook\OutputPageParserOutputHook;
 use MediaWiki\Hook\ParserFirstCallInitHook;
 use MediaWiki\Hook\SidebarBeforeOutputHook;
 use MediaWiki\Html\Html;
