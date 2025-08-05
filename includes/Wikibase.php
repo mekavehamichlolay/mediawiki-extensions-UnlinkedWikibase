@@ -110,19 +110,20 @@ class Wikibase {
 		}
 		if ( preg_match( '/P[0-9]+/', trim( $nameOrId ) ) ) {
 			$this->propIds[ $nameOrId ] = trim( $nameOrId );
-		} else {
-			$propDetails = $this->getApiResult( [
-				'action' => 'wbsearchentities',
-				'format' => 'json',
-				'search' => $nameOrId,
-				'language' => $this->contentLang->getCode(),
-				'type' => 'property',
-				'limit' => 1,
-				'props' => '',
-				'formatversion' => 2,
-			], $this->cache::TTL_WEEK );
-			$this->propIds[ $nameOrId ] = $propDetails['search'][0]['id'] ?? null;
-		}
+			return $this->propIds[ $nameOrId ];
+		} 
+		$propDetails = $this->getApiResult( [
+			'action' => 'wbsearchentities',
+			'format' => 'json',
+			'search' => $nameOrId,
+			'language' => $this->contentLang->getCode(),
+			'type' => 'property',
+			'limit' => 1,
+			'props' => '',
+			'formatversion' => 2,
+		], $this->cache::TTL_WEEK );
+		$this->propIds[ $nameOrId ] = $propDetails['search'][0]['id'] ?? null;
+		
 		return $this->propIds[ $nameOrId ];
 	}
 
