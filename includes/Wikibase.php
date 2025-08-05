@@ -3,8 +3,8 @@
 namespace MediaWiki\Extension\UnlinkedWikibase;
 
 use DateTime;
-use JobQueueGroup;
-use JobSpecification;
+use MediaWiki\JobQueue\JobQueueGroup;
+use MediaWiki\JobQueue\JobSpecification;
 use MediaWiki\Config\Config;
 use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\Language\Language;
