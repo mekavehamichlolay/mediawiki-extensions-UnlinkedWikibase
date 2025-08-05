@@ -97,9 +97,6 @@ class Wikibase {
 		$data = $this->fetch( $url, $ttl );
 		$entities = $data['entities'] ?? [];
 		$entity = reset( $entities ) ?: null;
-		if ( $entity ) {
-			$id = $entity['id'];
-		}
 		return $entity;
 	}
 
