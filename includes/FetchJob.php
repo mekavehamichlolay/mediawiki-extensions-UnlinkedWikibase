@@ -4,6 +4,7 @@ namespace MediaWiki\Extension\UnlinkedWikibase;
 
 use MediaWiki\JobQueue\Job;
 use MediaWiki\Config\Config;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
 use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\ObjectCache\WANObjectCache;
@@ -18,10 +19,15 @@ class FetchJob extends Job {
 	/** @var Config */
 	private $config;
 
-	public function __construct( Title $title, array $params, WANObjectCache $cache, Config $config ) {
+	public function __construct( Title $title, array $params, Config $config ) {
 		parent::__construct( self::JOB_NAME, $params );
-		$this->cache = $cache;
 		$this->config = $config;
+		if ( $this->config->get( "UnlinkedWikibaseCache" ) ) {
+			$this->cache = MediaWikiServices::getInstance()->getObjectCacheFactory()->
+				getInstance( $this->config->get( "UnlinkedWikibaseCache" ) );
+		} else {
+			$this->cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
+		}
 	}
 
 	/**

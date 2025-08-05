@@ -45,7 +45,6 @@
 		"UnlinkedWikibaseFetch": {
 			"class": "MediaWiki\\Extension\\UnlinkedWikibase\\FetchJob",
 			"services": [
-				"MainWANObjectCache",
 				"MainConfig"
 			]
 		}
